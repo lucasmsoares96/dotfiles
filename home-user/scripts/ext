@@ -1,0 +1,18 @@
+#!/bin/bash
+
+file=$1
+base="${file%.*}"
+extension=${file##*.}
+SCRIPT=$(readlink -f "$1")
+SCRIPTPATH=$(dirname "$SCRIPT")
+
+if [ ${extension} = "c" ] || [ ${extension} = "C" ]
+then
+  clang ${file} -o ${base} && $SCRIPTPATH/${base}
+elif [ ${extension} = "cpp" ]
+then
+  clang++ -std=c++20 $SCRIPTPATH/*.cpp -o $SCRIPTPATH/../main && $SCRIPTPATH/../main
+elif [ ${extension} = "m" ]
+then
+  octave $SCRIPTPATH/${file}
+fi

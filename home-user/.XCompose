@@ -1,0 +1,7 @@
+include "%L"
+
+<dead_acute> <dead_acute>        	: "\'\'"
+<dead_acute> <space>            	: "´"
+#<dead_diaeresis> <dead_diaeresis> 	: "\"\""
+<dead_grave> <dead_grave>        	: "\`\`"
+<dead_tilde> <dead_tilde>        	: "\~\~"

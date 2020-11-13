@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/mnt/files/Lucas/Documents/Engenharia_de_Computacao/3_periodo/AEDA/aula2/pratica3/Pratica_3-Etapa_1_-_Lucas_Martins_Soares'
+let g:netrw_dirhist_9='/mnt/files/Lucas/Documents/Engenharia_de_Computacao/2_periodo/Laboratório de Programação/exercicios/aula12/src'
+let g:netrw_dirhist_8='/home/lucas/.config/zathura'
+let g:netrw_dirhist_7='/home/lucas/.config'
+let g:netrw_dirhist_6='/home/lucas/.config/zathura2'
+let g:netrw_dirhist_5='/mnt/files/Lucas/Documents/Engenharia_de_Computacao/3_periodo/AEDA/aula2/pratica3/Pratica_3-Etapa_1_-_Lucas_Martins_Soares/src'
+let g:netrw_dirhist_4='/mnt/files/Lucas/Documents/Engenharia_de_Computacao/3_periodo/AEDA/aula2/pratica3/Pratica_3-Etapa_1_-_Lucas_Martins_Soares'
+let g:netrw_dirhist_3='/mnt/files/Lucas/Documents/Engenharia_de_Computacao/3_periodo/AEDA/aula2/pratica3'
+let g:netrw_dirhist_2='/mnt/files/Lucas/Documents/Engenharia_de_Computacao/3_periodo/AEDA/aula2/ListaPilhaFila'
+let g:netrw_dirhist_1='/mnt/files/Lucas/Documents/Engenharia_de_Computacao/3_periodo/AEDA/aula2/ListaPilhaFila/C++/dinamica'

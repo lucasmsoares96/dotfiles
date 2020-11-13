@@ -1,0 +1,26 @@
+"/home/lucas/scripts/kb-brightness down"
+  m:0x0 + c:237
+
+"/home/lucas/scripts/kb-brightness up"
+  m:0x0 + c:238
+
+"/home/lucas/scripts/bl-brightness down"
+  m:0x0 + c:232
+
+"/home/lucas/scripts/bl-brightness up"
+  m:0x0 + c:233
+
+# Increase volume
+#"amixer set Master playback 1+ unmute"
+"amixer set Master 2%+"
+   XF86AudioRaiseVolume
+
+# Decrease volume
+#"amixer set Master playback 1-"
+"amixer set Master 2%-"
+   XF86AudioLowerVolume
+
+
+#"amixer set Master toggle"
+"pactl set-sink-mute 0 toggle"
+   XF86AudioMute

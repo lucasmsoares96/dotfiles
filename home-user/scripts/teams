@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/opt/teams/bin/teams > /dev/null 2>&1 &

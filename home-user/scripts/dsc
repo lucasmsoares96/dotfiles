@@ -1,0 +1,28 @@
+#!/bin/bash
+
+IMG_PATH=/home/lucas/Images/scrot/
+EDIT=kolourpaint
+
+
+prog="
+1.xclip_fullscreen
+2.save_fullscreen
+3.xclip_section
+4.save_section
+5.edit_fullscreen
+6.edit_selection
+"
+
+cmd=$(dmenu  -l 20  -p 'Screen Shot'   <<< "$prog")
+
+cd $IMG_PATH
+case ${cmd%% *} in
+	1.xclip_fullscreen)	scrot -d 1 foo.png && xclip -selection clipboard -t image/png -i foo.png && rm foo.png ;;
+	2.save_fullscreen)	scrot -d 1 ;;
+	3.xclip_section)	scrot -s foo.png && xclip -selection clipboard -t image/png -i foo.png && rm foo.png ;;
+	4.save_section)	scrot -s ;;
+	5.edit_fullscreen)	scrot -d 1 -e "$EDIT \$f" ;;
+	6.edit_selection)	scrot -s -e "$EDIT \$f" ;;
+  	*)		exec "'${cmd}'"  ;;
+esac
+
