@@ -13,110 +13,114 @@
 REC_PATH=/home/lucas/Videos/screencast/
 
 updateicon() { \
-	echo "$1" > /tmp/recordingicon
-	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
-	}
+  echo "$1" > /tmp/recordingicon
+  pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
+}
 
 killrecording() {
-	recpid="$(cat /tmp/recordingpid)"
-	# kill with SIGTERM, allowing finishing touches.
-	kill -15 "$recpid"
-	rm -f /tmp/recordingpid
-	updateicon ""
-	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
-	# even after SIGTERM, ffmpeg may still run, so SIGKILL it.
-	sleep 3
-	kill -9 "$recpid"
-	exit
-	}
+  recpid="$(cat /tmp/recordingpid)"
+  # kill with SIGTERM, allowing finishing touches.
+  kill -15 "$recpid"
+  rm -f /tmp/recordingpid
+  updateicon ""
+  pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
+  # even after SIGTERM, ffmpeg may still run, so SIGKILL it.
+  sleep 3
+  kill -9 "$recpid"
+  exit
+}
 
 screencast_input() { \
-	ffmpeg -y \
-	-f x11grab -thread_queue_size 256 \
-	-framerate 30 \
-	-s "$(xdpyinfo | grep dimensions | awk '{print $2;}')" \
-	-i "$DISPLAY" \
+  ffmpeg -y \
+  -f x11grab -thread_queue_size 256 \
+  -framerate 30 \
+  -s "$(xdpyinfo | grep dimensions | awk '{print $2;}')" \
+  -i "$DISPLAY" \
   -f alsa -thread_queue_size 256 -ac 2 -i hw:0 \
-  -c:v libx264 -preset ultrafast -threads 0 -profile:v baseline -level 3.0 -pix_fmt yuv420p \
-	"screencast-$(date '+%F_%H-%M-%S').mp4" &
-	echo $! > /tmp/recordingpid
+  -c:v libx264 -preset ultrafast -threads 0 -crf 23 -pix_fmt yuv420p \
+  -c:a aac -ac 2 -b:a 128k \
+  -movflags faststart \
+  "$(date '+%F_%H-%M-%S').mp4" &
+  echo $! > /tmp/recordingpid
   updateicon "⏺️🎙️"
-       	}
+}
 
 screencast_output() { \
-	ffmpeg -y \
+  ffmpeg -y \
   -f pulse -thread_queue_size 256 -ac 2 -i alsa_output.pci-0000_00_1b.0.analog-stereo.monitor \
-	-f x11grab -thread_queue_size 256 \
-	-framerate 30 \
-	-s "$(xdpyinfo | grep dimensions | awk '{print $2;}')" \
-	-i "$DISPLAY" \
-  -c:v libx264 -preset ultrafast -threads 0 -profile:v baseline -level 3.0 -pix_fmt yuv420p \
-	"screencast-$(date '+%F_%H-%M-%S').mp4" &
-	echo $! > /tmp/recordingpid
+  -f x11grab -thread_queue_size 256 \
+  -framerate 30 \
+  -s "$(xdpyinfo | grep dimensions | awk '{print $2;}')" \
+  -i "$DISPLAY" \
+  -c:v libx264 -preset ultrafast -threads 0 -crf 23 -pix_fmt yuv420p \
+  -c:a aac -ac 2 -b:a 128k \
+  -movflags faststart \
+  "$(date '+%F_%H-%M-%S').mp4" &
+  echo $! > /tmp/recordingpid
   updateicon "⏺️🎙️"
-       	}
+}
 
 video() { ffmpeg \
-	-f x11grab \
-	-s "$(xdpyinfo | grep dimensions | awk '{print $2;}')" \
-	-i "$DISPLAY" \
- 	-c:v libx264 -qp 0 -r 30 \
-	"gvideo-$(date '+%y%m%d-%H%M-%S').mkv" &
-	echo $! > /tmp/recordingpid
-	updateicon "⏺️"
-	}
+  -f x11grab \
+  -s "$(xdpyinfo | grep dimensions | awk '{print $2;}')" \
+  -i "$DISPLAY" \
+  -c:v libx264 -qp 0 -r 30 \
+  "gvideo-$(date '+%y%m%d-%H%M-%S').mkv" &
+  echo $! > /tmp/recordingpid
+  updateicon "⏺️"
+}
 
 webcamhidef() { ffmpeg \
-	-f v4l2 \
-	-i /dev/video0 \
-	-video_size 1920x1080 \
-	"gwebcam-$(date '+%y%m%d-%H%M-%S').mkv" &
-	echo $! > /tmp/recordingpid
-	updateicon "🎥"
-	}
+  -f v4l2 \
+  -i /dev/video0 \
+  -video_size 1920x1080 \
+  "gwebcam-$(date '+%y%m%d-%H%M-%S').mkv" &
+  echo $! > /tmp/recordingpid
+  updateicon "🎥"
+}
 
 webcam() { ffmpeg \
-	-f v4l2 \
-	-i /dev/video0 \
-	-video_size 640x480 \
-	"gwebcam-$(date '+%y%m%d-%H%M-%S').mkv" &
-	echo $! > /tmp/recordingpid
-	updateicon "🎥"
-	}
+  -f v4l2 \
+  -i /dev/video0 \
+  -video_size 640x480 \
+  "gwebcam-$(date '+%y%m%d-%H%M-%S').mkv" &
+  echo $! > /tmp/recordingpid
+  updateicon "🎥"
+}
 
 
 audio() { \
-	ffmpeg \
-	-f alsa -i default \
-	-c:a flac \
-	"gaudio-$(date '+%y%m%d-%H%M-%S').flac" &
-	echo $! > /tmp/recordingpid
-	updateicon "🎙️"
-	}
+  ffmpeg \
+  -f alsa -i default \
+  -c:a flac \
+  "gaudio-$(date '+%y%m%d-%H%M-%S').flac" &
+  echo $! > /tmp/recordingpid
+  updateicon "🎙️"
+}
 
 askrecording() { \
-	choice=$(printf "1.screencast_input\\n2.screencast_output\\n3.video\\n4.audio\\n5.webcam\\n6.webcam (hi-def)" | dmenu -l 20 -p "Select recording style:")
-	case "$choice" in
-		1.screencast_input) screencast_input;;
-		2.screencast_output) screencast_output;;
-    3.video) video;;
-		4.audio) audio;;
-		5.webcam) webcam;;
-		"6.webcam (hi-def)") webcamhidef;;
-	esac
-	}
+  choice=$(printf "1.screencast_input\\n2.screencast_output\\n3.video\\n4.audio\\n5.webcam\\n6.webcam (hi-def)" | dmenu -l 20 -p "Select recording style:")
+  case "$choice" in
+  1.screencast_input) screencast_input;;
+  2.screencast_output) screencast_output;;
+  3.video) video;;
+  4.audio) audio;;
+  5.webcam) webcam;;
+  "6.webcam (hi-def)") webcamhidef;;
+  esac
+}
 
 asktoend() { \
-	response=$(printf "1.Yes\\n2.No" | dmenu -l 20 -p "Recording still active. End recording?") &&
-	[ "$response" = "1.Yes" ] &&  killrecording
-	}
+  response=$(printf "1.Yes\\n2.No" | dmenu -l 20 -p "Recording still active. End recording?") &&
+  [ "$response" = "1.Yes" ] &&  killrecording
+}
 
 
 cd $REC_PATH
 case "$1" in
-	screencast) screencast;;
-	audio) audio;;
-	video) video;;
-	kill) killrecording;;
-	*) ([ -f /tmp/recordingpid ] && asktoend && exit) || askrecording;;
+screencast) screencast;;
+audio) audio;;
+video) video;;
+kill) killrecording;;
+*) ([ -f /tmp/recordingpid ] && asktoend && exit) || askrecording;;
 esac
