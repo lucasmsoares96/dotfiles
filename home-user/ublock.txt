@@ -1,5 +1,8 @@
-! 2020-10-15 https://www.youtube.com
 www.youtube.com##.ytd-two-column-browse-results-renderer.style-scope > .ytd-rich-grid-renderer.style-scope
 www.youtube.com##ytd-watch-next-secondary-results-renderer.ytd-watch-flexy.style-scope > .ytd-watch-next-secondary-results-renderer.style-scope
 www.youtube.com##.ytd-secondary-search-container-renderer.style-scope > .ytd-universal-watch-card-renderer.style-scope
 www.youtube.com##.ytp-endscreen-content
+www.youtube.com##.ytp-ce-size-853.ytp-ce-bottom-right-quad.ytp-ce-element-show.ytp-ce-video.ytp-ce-element
+www.youtube.com##.ytp-ce-size-853.ytp-ce-top-right-quad.ytp-ce-element-show.ytp-ce-video.ytp-ce-element
+www.youtube.com##.ytp-ce-size-1280.ytp-ce-top-left-quad.ytp-ce-element-show.ytp-ce-video.ytp-ce-element
+www.youtube.com##.ytp-ce-size-1280.ytp-ce-bottom-left-quad.ytp-ce-element-show.ytp-ce-video.ytp-ce-element
