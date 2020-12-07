@@ -4,6 +4,8 @@
 (require 'evil)
 (evil-mode 1)
 
+(setq-default truncate-lines 1)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

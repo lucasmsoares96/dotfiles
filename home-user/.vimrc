@@ -25,6 +25,7 @@ set termguicolors
 set noshowmode
 set backspace=indent,eol,start
 set scrolloff=999
+"iset sidescrolloff=999
 set encoding=utf-8
 "set wrap linebreak
 
@@ -47,34 +48,24 @@ autocmd FileChangedShellPost *
 "xsel
 set clipboard=unnamedplus
 
-
-" Give more space for displaying messages.
-set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=50
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-set colorcolumn=104
+set colorcolumn=75
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-
 
 
 call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'junegunn/goyo.vim'
   Plug 'dracula/vim', { 'as': 'dracula' }
+  Plug 'junegunn/goyo.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-  Plug 'morhetz/gruvbox'
   Plug 'rust-lang/rust.vim'
   Plug 'jackguo380/vim-lsp-cxx-highlight'
   Plug 'pangloss/vim-javascript'
+  Plug 'jvirtanen/vim-octave'
+  " Plug 'tranvansang/octave.vim'
+  "Plug 'morhetz/gruvbox'
 call plug#end()
 
 
@@ -99,6 +90,7 @@ let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 let g:netrw_browse_split = 0
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
+" let g:netrw_sort_by = "exten"
 
 
 " remap
@@ -118,8 +110,9 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>cl :Goyo<CR>
 nnoremap <leader>pv :Ex <CR>
+nnoremap <leader>t :wa <bar> :term ++curwin<CR>
 nnoremap <leader>r :wa <bar> :term ++curwin ext %<CR>
-nnoremap <leader>d :wa <bar> :term ++curwin zsh -c "clang++ -fstandalone-debug -g -O0 *.cpp -o ../main && ../lldb main"<CR>
+nnoremap <leader>d :wa <bar> :term ++curwin zsh -c "clang++ -fstandalone-debug -g -O0 *.cpp -o ../main && lldb ../main"<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader>ps :Rg<CR>
 nnoremap <Leader><CR> :so $MYVIMRC<CR>
@@ -129,9 +122,12 @@ nnoremap <Leader>rp :resize 100<CR>
 nnoremap <C-j> <C-d>
 nnoremap <C-k> <C-u>
 nnoremap U <C-r>
-imap ii <Esc>
 nnoremap o o<Esc>
 nnoremap O O<Esc>
+nnoremap Y yv
+nnoremap D dv
+inoremap ii <Esc>
+inoremap ê <C-k>e>
 
 
 " move line
@@ -139,8 +135,8 @@ execute "set <M-j>=\ej"
 execute "set <M-k>=\ek"
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
+" inoremap <A-j> <Esc>:m .+1<CR>==gi
+" inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
@@ -155,29 +151,62 @@ endfunction
 autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
 
 
-" coc 
-" autocmd FileType * let b:coc_suggest_disable = 1
-" use <tab> for trigger completion and navigate to the next complete item
+
+" coc
+
+"autocmd FileType * let b:coc_suggest_disable = 1
+autocmd FileType markdown let b:coc_suggest_disable = 1
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 function! s:check_back_space() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
-nmap <leader>rr <Plug>(coc-rename)
-nmap <leader>g[ <Plug>(coc-diagnostic-prev)
-nmap <leader>g] <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
-nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
-nnoremap <leader>cr :CocRestart
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+let g:coc_snippet_next = '<tab>'
+
+
 
 
 " goyo

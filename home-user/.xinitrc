@@ -6,7 +6,7 @@ while true; do
 BAT=$(acpi | awk '{ print $4 }' | sed s/","//g)
 DATE=$(date +"%F" )
 CLK=$(date +"%R" )
-xsetroot -name "   $BAT    $DATE    $CLK "
+xsetroot -name "   $BAT    $CLK    $DATE "
 #xsetroot -name "$CLK"
 sleep 1
 done &
@@ -21,6 +21,7 @@ xmodmap -e "keycode 48 = dead_acute quotedbl acute acute apostrophe"
 
 xinput --set-prop bcm5974 'libinput Natural Scrolling Enabled' 1
 xinput --set-prop bcm5974 'libinput Accel Speed' 0.3
+xinput --set-prop bcm5974 'libinput Accel Speed' 0
 xinput --set-prop "USB Optical Mouse" 'libinput Natural Scrolling Enabled' 1
 
 
@@ -36,6 +37,8 @@ export PATH="$HOME/scripts:$PATH" #dmenu
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/flutter/bin:$PATH"
+export PATH="/opt/android-studio/bin:$PATH"
+
 
 # Autostart section
 #pcmanfm &

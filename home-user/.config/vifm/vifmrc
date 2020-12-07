@@ -138,7 +138,9 @@ mark h ~/
 
 command! df df -h %m 2> /dev/null
 command! diff vim -d %f %F
-command! zip zip -r %f.zip %f
+command! zip zip -rq %f.zip %f
+command! unzip unzip %f
+command! untar tar -xf %f
 command! run !! ./%f
 command! make !!make %a
 command! mkcd :mkdir %a | cd %a
@@ -199,12 +201,12 @@ filextype *.djvu
 
 " Audio
 filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
+        \ {Play using ffplay}
+        \ alacritty -e ffplay -nodisp -autoexit %c > /dev/null 2>&1 &,
         \ {View using cmus}
         \ alacritty -e cmus %f &,
-       \ {Play using ffplay}
-       \ ffplay -nodisp -autoexit %c,
-       \ {Play using MPlayer}
-       \ mplayer %f,
+        \ {Play using MPlayer}
+        \ mplayer %f,
 fileviewer *.mp3 mp3info
 fileviewer *.flac soxi
 
@@ -355,7 +357,9 @@ filetype *.7z
 fileviewer *.7z 7z l %c
 
 " Office files
-filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
+filextype *.odt,*.doc,*.docx calligrawords %f > /dev/null 2>&1 &
+filextype *.xls,*.xlsx calligrasheets %f > /dev/null 2>&1 &
+filextype *.odp,*.pptx,*.ppt calligrastage %f > /dev/null 2>&1 &
 fileviewer *.doc catdoc %c
 fileviewer *.docx docx2txt.pl %f -
 
@@ -494,7 +498,8 @@ nnoremap <f4> :edit<cr>
 nnoremap <f5> :copy<cr>
 nnoremap <f6> :move<cr>
 nnoremap <f7> :mkdir<space>
-nnoremap <f8> :delete<cr>
+nnoremap <f8> :touch<space>
+nnoremap <f9> :delete<cr>
 
 " ------------------------------------------------------------------------------
 
