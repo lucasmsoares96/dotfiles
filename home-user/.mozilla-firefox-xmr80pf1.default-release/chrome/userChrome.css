@@ -1,18 +1,8 @@
 /*
-about:config
-toolkit.legacyUserProfileCustomizations.stylesheets
+   Override hiding of Bookmarks Toolbar in F11 full screen
+   when you roll down the tabs/main toolbar 
 */
-
- #navigator-toolbox {
-    height: 0.01px !important;
-    min-height: 0.01px !important;
-    overflow: hidden !important;
- }
-
-#navigator-toolbox:hover,
-#navigator-toolbox:focus,
-#navigator-toolbox:focus-within,
-#navigator-toolbox:active {
-    height: auto !important;
-    overflow: visible !important;
+#navigator-toolbox[inFullscreen="true"] #PersonalToolbar {
+  visibility: unset !important;
 }
+#navigator-toolbox[fullscreenShouldAnimate] { transition: none !important; }

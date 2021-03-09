@@ -9,9 +9,11 @@ SCRIPTPATH=$(dirname "$SCRIPT")
 if [ ${extension} = "c" ] || [ ${extension} = "C" ]
 then
   clang ${file} -o ${base} && $SCRIPTPATH/${base}
-elif [ ${extension} = "cpp" ]
+elif [ ${extension} = "cpp" ] || [ ${extension} = "hpp" ]
 then
-  clang++ -std=c++20 $SCRIPTPATH/*.cpp -o $SCRIPTPATH/../main && $SCRIPTPATH/../main
+  (cd $SCRIPTPATH && make) || (cd $SCRIPTPATH/../ && make) || (cd $SCRIPTPATH/../../ && make) || (cd $SCRIPTPATH/../../../ && make)
+#  $(clang++ -std=c++20 $SCRIPTPATH/*.cpp $SCRIPTPATH/*/*.cpp -o $SCRIPTPATH/../main || clang++ -std=c++20 $SCRIPTPATH/../*.cpp $SCRIPTPATH/../*/*.cpp)
+#  && $($SCRIPTPATH/../main || $SCRIPTPATH/../../main)
 elif [ ${extension} = "m" ]
 then
   octave $SCRIPTPATH/${file}

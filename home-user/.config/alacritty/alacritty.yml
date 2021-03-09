@@ -99,3 +99,8 @@ font:
     style: Bold Italic
 
   size: 11
+
+
+key_bindings:
+  - { key: K,   mods: Control,   action: ScrollPageUp                 }
+  - { key: J, mods: Control,   action: ScrollPageDown               }

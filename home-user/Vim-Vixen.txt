@@ -112,7 +112,7 @@
     },
     "<C-k>": {
       "type": "scroll.pages",
-      "count": -0.5
+      "count": -1
     },
     "<C-B>": {
       "type": "scroll.pages",
@@ -120,7 +120,7 @@
     },
     "<C-j>": {
       "type": "scroll.pages",
-      "count": 0.5
+      "count": 1
     },
     "<C-F>": {
       "type": "scroll.pages",
@@ -131,11 +131,11 @@
     },
     "k": {
       "type": "scroll.vertically",
-      "count": -2
+      "count": -5
     },
     "j": {
       "type": "scroll.vertically",
-      "count": 2
+      "count": 5
     },
     "!d": {
       "type": "tabs.close.force"
@@ -221,5 +221,7 @@
     "complete": "sh",
     "colorscheme": "dark"
   },
-  "blacklist": []
+ "blacklist": [
+    "localhost:8888"
+  ]
 }

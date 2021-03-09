@@ -14,7 +14,7 @@
 " Since emacs is a GUI app and not a terminal app like vim, append the command
 " with an ampersand (&).
 
-set vicmd=vim
+set vicmd=nvim
 
 " This makes vifm perform file operations on its own instead of relying on
 " standard utilities like `cp`.  While using `cp` and alike is a more universal
@@ -102,7 +102,7 @@ set incsearch
 
 " Try to leave some space from cursor to upper/lower border in lists
 
-set scrolloff=4
+set scrolloff=9999
 
 " Don't do too many requests to slow file systems
 
@@ -175,7 +175,7 @@ command! reload :write | restart
 " You can also add %CLEAR if you want to clear screen before running FUSE
 " program.
 
-filextype *.c,*.cpp,*.h,*.hpp,*.txt,*.m,*.html,*.css,*.js,*.csv,*.md alacritty -e vim %f > /dev/null 2>&1 &
+filextype *.c,*.cpp,*.h,*.hpp,*.txt,*.m,*.html,*.css,*.js,*.csv,*.md,*.rs alacritty -e nvim %f > /dev/null 2>&1 &
 
 " Pdf
 filextype *.pdf zathura %c %i &, apvlv %c, xpdf %c
@@ -201,6 +201,8 @@ filextype *.djvu
 
 " Audio
 filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
+        \ {Play using mpv}
+        \ mpv %f --no-terminal &,
         \ {Play using ffplay}
         \ alacritty -e ffplay -nodisp -autoexit %c > /dev/null 2>&1 &,
         \ {View using cmus}
@@ -233,8 +235,8 @@ fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 
 " Web
 filextype *.html,*.htm
-        \ {Open with vim}
-        \ vim %c &,
+        \ {Open with nvim}
+        \ nvim %c &,
         \ {Open with emacs}
         \ emacsclient -c %c &,
         \ {Open with dwb}
@@ -411,13 +413,13 @@ filextype */
 " file types
 set classify=' :dir:/, :exe:, :reg:, :link:'
 " various file names
-set classify+=' ::../::, ::*.sh::, ::*.[hc]pp::, ::*.[hc]::, ::/^copying|license$/::, ::.git/,,*.git/::, ::*.epub,,*.fb2,,*.djvu::, ::*.pdf::, ::*.htm,,*.html,,**.[sx]html,,*.xml::'
+set classify+=' ::../::, ::*.sh::, ::*.[hc]pp::, ::*.[hc]::, ::/^copying|license$/::, ::.git/,,*.git/::, ::*.epub,,*.fb2,,*.djvu::, ::*.pdf::, ::*.htm,,*.html,,**.[sx]html,,*.xml::'
 " archives
 set classify+=' ::*.7z,,*.ace,,*.arj,,*.bz2,,*.cpio,,*.deb,,*.dz,,*.gz,,*.jar,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.rz,,*.tar,,*.taz,,*.tb2,,*.tbz,,*.tbz2,,*.tgz,,*.tlz,,*.trz,,*.txz,,*.tz,,*.tz2,,*.xz,,*.z,,*.zip,,*.zoo::'
 " images
 set classify+=' ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
 " audio
-set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
+set classify+=' ::*.opus,,*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
 " media
 set classify+=' ::*.webm,,*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid::'
 " office files
@@ -528,3 +530,4 @@ nnoremap <f9> :delete<cr>
 
 set relativenumber
 " set sort=+ext
+set cpoptions=fs

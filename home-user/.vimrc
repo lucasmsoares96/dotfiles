@@ -64,6 +64,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'jackguo380/vim-lsp-cxx-highlight'
   Plug 'pangloss/vim-javascript'
   Plug 'jvirtanen/vim-octave'
+  Plug 'posva/vim-vue'
   " Plug 'tranvansang/octave.vim'
   "Plug 'morhetz/gruvbox'
 call plug#end()
@@ -119,8 +120,8 @@ nnoremap <Leader><CR> :so $MYVIMRC<CR>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>rp :resize 100<CR>
-nnoremap <C-j> <C-d>
-nnoremap <C-k> <C-u>
+nnoremap <C-j> <C-f>
+nnoremap <C-k> <C-b>
 nnoremap U <C-r>
 nnoremap o o<Esc>
 nnoremap O O<Esc>
@@ -154,8 +155,8 @@ autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
 
 " coc
 
-"autocmd FileType * let b:coc_suggest_disable = 1
-autocmd FileType markdown let b:coc_suggest_disable = 1
+autocmd FileType * let b:coc_suggest_disable = 1
+"autocmd FileType markdown let b:coc_suggest_disable = 1
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -204,7 +205,8 @@ command! -nargs=0 Format :call CocAction('format')
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_next = '<CR>'              " Use Tab to jump to next snippet placeholder
+let g:coc_snippet_prev = '<S-Tab>'            " Use Shift+Tab to jump to previous snippet placeholder
 
 
 

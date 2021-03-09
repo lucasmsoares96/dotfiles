@@ -1,0 +1,15 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+
+# /dev/sda6
+UUID=5e5fd1be-f495-4d84-a9c0-b0254f693632	/         	ext4      	rw,relatime	0 1
+
+# /dev/sda4 LABEL=Arch\134x20Linux
+UUID=642efc61-9158-347d-95c5-e4622770026b	/boot     	hfsplus   	rw,relatime,umask=22,uid=0,gid=0,nls=utf8	0 0
+
+# /dev/sda3 LABEL=Files
+#UUID=5F58-A82C      	/mnt/files	exfat     	rw,relatime,fmask=0022,dmask=0022,iocharset=utf8,errors=remount-ro	0 2
+UUID=5FF9-F6DE      	/mnt/files	  exfat     	rw,user,exec,umask=000,uid=1000,gid=1000  0 0
+UUID=B4D66BF2D66BB2F2 /mnt/windows	ntfs-3g     rw,user,exec,umask=000,uid=1000,gid=1000  0 0
