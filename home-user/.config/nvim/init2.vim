@@ -42,9 +42,8 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 call plug#begin('~/.vim/plugged')
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/completion-nvim'
-"  Plug 'SirVer/ultisnips'
+  Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
-  Plug 'norcalli/snippets.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'junegunn/goyo.vim'
@@ -60,6 +59,8 @@ call plug#begin('~/.vim/plugged')
   "Plug 'morhetz/gruvbox'
 call plug#end()
 
+
+
 "  completion-nvim
 lua require'lspconfig'.clangd.setup{on_attach=require'completion'.on_attach}
 
@@ -73,25 +74,14 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 set shortmess+=c
 
+let g:completion_enable_snippet = 'UltiSnips'
 
-
-lua require'snippets'.use_suggested_mappings()
-
-" This variant will set up the mappings only for the *CURRENT* buffer.
-lua require'snippets'.use_suggested_mappings(true)
-
-" There are only two keybindings specified by the suggested keymappings, which is <C-k> and <C-j>
-" They are exactly equivalent to:
-
-" <c-k> will either expand the current snippet at the word or try to jump to
-" the next position for the snippet.
-inoremap <c-k> <cmd>lua return require'snippets'.expand_or_advance(1)<CR>
-
-" <c-j> will jump backwards to the previous field.
-" If you jump before the first field, it will cancel the snippet.
-inoremap <c-j> <cmd>lua return require'snippets'.advance_snippet(-1)<CR>
-
-
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<cr>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 lua require'nvim-treesitter.configs'.setup {highlight = {enable = true,},}
 

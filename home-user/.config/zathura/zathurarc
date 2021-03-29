@@ -59,10 +59,22 @@ set adjust-open width
 
 
 set guioptions none                 #  esconde a barra de baixo
+
 map <C-j> scroll half-down          #  permite rolar meia pagina para baixo com <Ctrl + j>
 map <C-k> scroll half-up            #   permite rolar meia pagina para cima com <Ctrl + k>
+#map J scroll down                   #  permite rolar para baixo com <Shift + j>
+#map K scroll up                     #   permite rolar para cima com <Shift + k>
+#unmap j
+#unmap k
+#map j scroll full-down              #   permite rolar a pagina toda para baixo com <j>
+#map k scroll full-up                #   permite rolar a pagina toda para cima com <k>
+
 set selection-clipboard clipboard   #  permite copiar a seção para a memória
 #set smooth-scroll "true"
-set first-page-column 1:1           # pagina impar a esquerda
+#set first-page-column 1:1           # pagina impar a esquerda
 set adjust-open height
 set continuous-hist-save true
+
+map [normal] ba focus_inputbar ":bmark "
+map [normal] bb focus_inputbar ":blist "
+map [normal] bd focus_inputbar ":bdelete "

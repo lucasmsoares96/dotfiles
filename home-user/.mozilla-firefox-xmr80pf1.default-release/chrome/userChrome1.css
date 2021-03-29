@@ -1,0 +1,8 @@
+/*
+   Override hiding of Bookmarks Toolbar in F11 full screen
+   when you roll down the tabs/main toolbar 
+*/
+#navigator-toolbox[inFullscreen="true"] #PersonalToolbar {
+  visibility: unset !important;
+}
+#navigator-toolbox[fullscreenShouldAnimate] { transition: none !important; }

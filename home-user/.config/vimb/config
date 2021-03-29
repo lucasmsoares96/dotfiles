@@ -1,7 +1,0 @@
-set home-page=ecosia.com
-set default-zoom=200
-set status-bar=false
-set input-autohide=on
-
-nnoremap <C-j> <C-d>
-nnoremap <C-k> <C-u>

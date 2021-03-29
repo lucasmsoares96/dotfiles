@@ -1,0 +1,7 @@
+[pull]
+	rebase = true
+[user]
+	email = lucasmsoares96@gmail.com
+	name = lucasmsoares96
+[credential]
+	helper = store

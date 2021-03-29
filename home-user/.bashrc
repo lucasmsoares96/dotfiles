@@ -1,16 +1,17 @@
+#
+# ~/.bashrc
+#
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/lucas/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/lucas/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/lucas/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/lucas/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
+source "$HOME/.cargo/env"
+
+alias ls='exa -las type'
+alias cat='bat'
+
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[ -f /home/lucas/xi-electron/node_modules/tabtab/.completions/electron-forge.bash ] && . /home/lucas/xi-electron/node_modules/tabtab/.completions/electron-forge.bash
