@@ -1,0 +1,22 @@
+/*
+about:config
+toolkit.legacyUserProfileCustomizations.stylesheets
+browser.sessionstore.restore_on_demand
+dom.image-lazy-loading.enabled
+*/
+
+ #navigator-toolbox {
+    height: 0.01px !important;
+    min-height: 0.01px !important;
+    overflow: hidden !important;
+ }
+
+/*
+#navigator-toolbox:hover,
+#navigator-toolbox:focus,
+#navigator-toolbox:focus-within,
+#navigator-toolbox:active {
+    height: auto !important;
+    overflow: visible !important;
+}
+*/

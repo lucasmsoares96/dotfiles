@@ -1,0 +1,50 @@
+State=AAAA/wAAAAD9AAAAAAAABXAAAANRAAAABAAAAAQAAAAIAAAACPwAAAACAAAAAQAAAAEAAAAiAGEAbgBuAG8AdABhAHQAaQBvAG4AVABvAG8AbABCAGEAcgMAAAAA/////wAAAAAAAAAAAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+eDP-1 Height 1440x900=880
+eDP-1 Width 1440x900=1440
+eDP-1 XPosition 1440x900=0
+eDP-1 YPosition 1440x900=0
+
+[Desktop Entry]
+FullScreen=true
+shouldShowMenuBarComingFromFullScreen=true
+shouldShowToolBarComingFromFullScreen=true
+
+[MainWindow]
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAAAj4AAAOCAAAABAAAAAQAAAAIAAAACPwAAAACAAAAAQAAAAEAAAAiAGEAbgBuAG8AdABhAHQAaQBvAG4AVABvAG8AbABCAGEAcgIAAAAA/////wAAAAAAAAAAAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+eDP-1 Height 1440x900=900
+eDP-1 Width 1440x900=1440
+eDP-1 XPosition 1440x900=0
+eDP-1 YPosition 1440x900=0
+
+[MainWindow][Toolbar annotationToolBar]
+IconSize=16
+
+[Recent Files]
+File1[$e]=/mnt/files/Lucas/Documents/Engenharia_de_Computacao/4_periodo/FISICA_3/Provas/Prova4_-_Natureza_e_propag_da_luz_+_opt_gem_-SOLUCAO.pdf
+File10[$e]=/mnt/files/Lucas/Downloads/undergradmath.pdf
+File2[$e]=/mnt/files/Lucas/Documents/Engenharia_de_Computacao/3_periodo/AEDA/2159M.PDF
+File3[$e]=/mnt/files/Lucas/Downloads/Conceitos de Linguagens de Programação - 9ª Ed - 2011.pdf
+File4[$e]=/mnt/files/Lucas/Downloads/Conceitos de Linguagens de Prog - Robert W. Sebesta.pdf
+File5[$e]=/mnt/files/Lucas/Documents/Engenharia_de_Computacao/4_periodo/Resoluo_CGRAD_09-2021_-_Altera_ad_referendum_o_calendrio_ERE_2020-2_DVN.pdf
+File6[$e]=/mnt/files/Lucas/Documents/Engenharia_de_Computacao/4_periodo/ENGENHARIA_COMPUTAÇÃO_15-12-20_2020-2.pdf
+File7[$e]=/mnt/files/Lucas/Documents/Engenharia_de_Computacao/4_periodo/Calendário-DIV-2020-II.pdf
+File8[$e]=/mnt/files/Lucas/Documents/Engenharia_de_Computacao/4_periodo/AOCO_2/Trabalhos/assembly/tarefaProc.pdf
+File9[$e]=/mnt/files/Lucas/Downloads/assembly_-_Lucas_Martins_Soares/README.pdf
+Name1[$e]=Prova4_-_Natureza_e_propag_da_luz_+_opt_gem_-SOLUCAO.pdf
+Name10[$e]=undergradmath.pdf
+Name2[$e]=2159M.PDF
+Name3[$e]=Conceitos de Linguagens de Programação - 9ª Ed - 2011.pdf
+Name4[$e]=Conceitos de Linguagens de Prog - Robert W. Sebesta.pdf
+Name5[$e]=Resoluo_CGRAD_09-2021_-_Altera_ad_referendum_o_calendrio_ERE_2020-2_DVN.pdf
+Name6[$e]=ENGENHARIA_COMPUTAÇÃO_15-12-20_2020-2.pdf
+Name7[$e]=Calendário-DIV-2020-II.pdf
+Name8[$e]=tarefaProc.pdf
+Name9[$e]=README.pdf
+
+[Shortcut Schemes]
+Current Scheme=vim
+
+[Toolbar annotationToolBar]
+IconSize=16

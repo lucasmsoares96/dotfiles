@@ -1,0 +1,3 @@
+INFO  2021-04-29T06:10:27.725 30338 emsg_multiline:685: E117: Função desconhecida: plug#begin (/root/.config/nvim/init.vim (line 62))
+INFO  2021-04-29T06:10:27.736 30338 main:578: starting main loop
+INFO  2021-04-29T06:12:23.295 30338 mch_exit:99: Nvim exit: 0

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+IMG_PATH=/home/lucas/Images/scrot/
+EDIT=kolourpaint
+NAME=$(date '+%F_%H-%M-%S').png
+
+prog="fx.fullscreen_xclip
+fs.fullscreen_save
+fo.fullscreen_open
+sx.section_xclip
+ss.section_save
+so.section_open"
+
+cmd=$(dmenu  -l 20  -p 'Screen Shot'   <<< "$prog")
+
+cd $IMG_PATH
+case ${cmd%% *} in
+	fx.fullscreen_xclip)	import -window root foo.png && xclip -selection clipboard -t image/png -i foo.png && rm foo.png ;;
+	fs.fullscreen_save)	import -window root $NAME ;;
+	fo.fullscreen_open)	import -window root $NAME && sxiv -bs h $NAME ;;
+	sx.section_xclip)	import foo.png && xclip -selection clipboard -t image/png -i foo.png && rm foo.png ;;
+	ss.section_save)	import $NAME ;;
+	so.section_open)	import $NAME && sxiv -bs h $NAME ;;
+  	*)		exec "'${cmd}'"  ;;
+esac
+
